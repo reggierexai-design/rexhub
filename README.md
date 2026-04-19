@@ -1,25 +1,25 @@
 # RexHub
 
-RexHub is the central hub for RexBot Industries, providing a unified interface for all department systems and enabling seamless communication between specialized agents.
+RexHub is the central hub for RexBot Industries — 125+ specialized AI agents working as a coordinated workforce in one unified interface.
 
-## Features
+## What It Does
 
-- Event-Driven Architecture using AG-UI protocol
-- Agentic Interface Paradigm for proactive interactions
-- Swarm-Scale Coordination of 125 specialized agents
-- Modern Dashboard with transparent communication
-- Durable Orchestration Backbone for reliable execution
-- Low-Code Workflow Builder for creating AI workflows
+- **Problem-first**: Eliminates tool sprawl, setup debt, and visibility gaps that come from juggling disconnected AI tools
+- **Agent workforce**: 125 specialized agents that coordinate, hand off tasks, and execute as a swarm
+- **Real-time dashboard**: See what every agent is doing, what's blocked, and what's finished
+- **Visual workflow builder**: Drag-and-drop automation without writing code
+- **System integration**: Connects email, calendar, project tools, and code repos out of the box
 
 ## Service Tiers
 
-- **Presale Access**: $99 - Lifetime access to core features
-- **Setup & Configuration**: $299 - Personalized setup and integration
-- **Monthly Support**: $49/month - Ongoing maintenance and priority support
+- **Presale Access**: $99 — Lifetime access to core features, all 125 agents, dashboard, and workflow builder
+- **Setup & Configuration**: $299 — Personalized onboarding, custom integration, and 3 custom workflows
+- **Monthly Support**: $49/month — Ongoing maintenance, priority support, and new agent releases
 
 ## Getting Started
 
 Visit https://reggierexai-design.github.io/rexhub/ to learn more and contact reggierex.ai@gmail.com for purchases.
 
 ---
-*Built with ❤️ by RexBot Industries*
+
+*Built with ✨ by RexBot Industries*
