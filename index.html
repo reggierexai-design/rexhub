@@ -191,6 +191,36 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
 @media(max-width:1024px){.problem-grid{grid-template-columns:repeat(2,1fr)}.arch-grid{grid-template-columns:1fr}.modules-grid{grid-template-columns:1fr}.steps-container{grid-template-columns:1fr;gap:3rem}.steps-container::before{display:none}.trust-pillars{grid-template-columns:1fr}.feature-list{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr}}
 @media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.75rem 1.5rem}.nav-links{display:none}.nav-toggle{display:block}.hero{padding:7rem 1.5rem 3.5rem}section,.pricing-section,.cta-section{padding:5rem 1.5rem}.problem-grid{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:1rem;text-align:center}.module-hero{padding:6rem 1.5rem 3rem}}
+
+/* MODULES LANDING PAGE */
+.modules-landing-hero{padding:10rem 2rem 4rem;max-width:var(--content-max);margin:0 auto;text-align:center}
+.modules-landing-hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;letter-spacing:-.025em;margin-bottom:1.5rem;font-weight:700}
+.modules-landing-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.modules-landing-hero .modules-landing-sub{font-size:1.1rem;color:var(--fg-muted);max-width:580px;margin:0 auto 4rem;line-height:1.75;font-weight:300}
+.modules-landing-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:var(--page-max);margin:0 auto;padding:0 2rem 8rem}
+.module-landing-card{padding:3.5rem 3rem;border:1px solid var(--warm-border);border-radius:24px;background:var(--bg-card);position:relative;overflow:hidden;transition:all .5s cubic-bezier(.16,1,.3,1);cursor:pointer;text-decoration:none;display:block;color:inherit}
+.module-landing-card:hover{transform:translateY(-6px);border-color:var(--warm-border-light);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.module-landing-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .4s}
+.module-landing-card:hover::after{opacity:1}
+.module-landing-card[data-module=rexcode]::after{background:#5b8def}
+.module-landing-card[data-module=rexflow]::after{background:#4ecdc4}
+.module-landing-card[data-module=rexnexus]::after{background:#8b5cf6}
+.module-landing-card[data-module=rexcage]::after{background:#e8a44a}
+.module-landing-card .ml-icon{width:3.5rem;height:3.5rem;margin-bottom:2rem;display:block}
+.module-landing-card h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:.75rem;font-weight:600;letter-spacing:-.01em}
+.module-landing-card h2 em{font-style:italic;font-weight:400}
+.module-landing-card[data-module=rexcode] h2 em{color:#5b8def}
+.module-landing-card[data-module=rexflow] h2 em{color:#4ecdc4}
+.module-landing-card[data-module=rexnexus] h2 em{color:#8b5cf6}
+.module-landing-card[data-module=rexcage] h2 em{color:#e8a44a}
+.module-landing-card .ml-tagline{font-size:1rem;color:var(--fg-muted);line-height:1.7;font-weight:300;margin-bottom:2rem;max-width:480px}
+.module-landing-card .ml-features{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.module-landing-card .ml-features span{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-muted);padding:.35rem .8rem;border:1px solid var(--warm-border);border-radius:100px}
+.module-landing-card .ml-cta{font-family:var(--font-mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:.5rem;transition:gap .3s}
+.module-landing-card:hover .ml-cta{gap:.8rem}
+.module-landing-card .ml-cta::after{content:'→';transition:transform .3s}
+.module-landing-card:hover .ml-cta::after{transform:translateX(3px)}
+@media(max-width:768px){.modules-landing-grid{grid-template-columns:1fr;padding:0 1.5rem 5rem}.module-landing-card{padding:2.5rem 2rem}}
 </style>
 </head>
 <body>
@@ -199,7 +229,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <div class="nav-links" id="navLinks">
 <a href="#/" data-nav>Home</a>
 <a href="#/system" data-nav>System</a>
-<a href="#/modules/rexcode" data-nav>Modules</a>
+<a href="#/modules" data-nav>Modules</a>
 <a href="#/launch" data-nav>Launch</a>
 </div>
 <a href="#/launch" class="nav-cta" data-nav>Get Presale Access</a>
@@ -447,7 +477,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <div class="footer-brand">Rex<span>Bot</span></div>
 <div class="footer-links">
 <a href="#/system" data-nav>System</a>
-<a href="#/modules/rexcode" data-nav>Modules</a>
+<a href="#/modules" data-nav>Modules</a>
 <a href="#/launch" data-nav>Launch</a>
 </div>
 <div class="footer-copy">&copy; 2026 RexBot Industries</div>
@@ -525,7 +555,56 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <div class="footer-brand">Rex<span>Bot</span></div>
 <div class="footer-links">
 <a href="#/" data-nav>Home</a>
-<a href="#/modules/rexcode" data-nav>Modules</a>
+<a href="#/modules" data-nav>Modules</a>
+<a href="#/launch" data-nav>Launch</a>
+</div>
+<div class="footer-copy">&copy; 2026 RexBot Industries</div>
+</footer>
+</div>
+
+
+<!-- MODULES LANDING PAGE -->
+<div class="page" id="page-modules">
+<div class="modules-landing-hero">
+<div class="section-label reveal" style="justify-content:center">Modules</div>
+<h1 class="reveal">Four modules,<br><em>one</em> workforce</h1>
+<p class="modules-landing-sub reveal">Each module owns its domain. Together they cover the full cycle from idea to production. Click any module to explore its capabilities, safety architecture, and use cases.</p>
+</div>
+<div class="modules-landing-grid">
+<a href="#/modules/rexcode" class="module-landing-card reveal reveal-delay-1" data-module="rexcode" data-nav>
+<img class="ml-icon" src="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/icon-rexcode.png" alt="RexCode">
+<h2>Rex<em>Code</em></h2>
+<p class="ml-tagline">Engineering and implementation. Your senior developer that never sleeps, never forgets context, and ships production-grade code across your entire stack.</p>
+<div class="ml-features"><span>Multi-language</span><span>Code Review</span><span>Debug</span><span>Deploy</span></div>
+<span class="ml-cta">Explore RexCode</span>
+</a>
+<a href="#/modules/rexflow" class="module-landing-card reveal reveal-delay-2" data-module="rexflow" data-nav>
+<img class="ml-icon" src="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/icon-rexflow.png" alt="RexFlow">
+<h2>Rex<em>Flow</em></h2>
+<p class="ml-tagline">Orchestration and coordination. Routes tasks to the right agents, manages dependencies, and keeps everything moving in parallel.</p>
+<div class="ml-features"><span>Task Routing</span><span>Dependencies</span><span>Parallel</span><span>Scheduling</span></div>
+<span class="ml-cta">Explore RexFlow</span>
+</a>
+<a href="#/modules/rexnexus" class="module-landing-card reveal reveal-delay-3" data-module="rexnexus" data-nav>
+<img class="ml-icon" src="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/icon-rexnexus.png" alt="RexNexus">
+<h2>Rex<em>Nexus</em></h2>
+<p class="ml-tagline">Memory and knowledge graph. Remembers context across sessions, connects decisions, and builds institutional knowledge.</p>
+<div class="ml-features"><span>Persistent Memory</span><span>Knowledge Graph</span><span>Context</span><span>Search</span></div>
+<span class="ml-cta">Explore RexNexus</span>
+</a>
+<a href="#/modules/rexcage" class="module-landing-card reveal reveal-delay-4" data-module="rexcage" data-nav>
+<img class="ml-icon" src="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/icon-rexcage.png" alt="RexCage">
+<h2>Rex<em>Cage</em></h2>
+<p class="ml-tagline">Security, access control, and proprietary sandbox. Manages permissions, enforces safety rules, and isolates agent execution in a contained environment.</p>
+<div class="ml-features"><span>Permissions</span><span>Safety Rules</span><span>Sandbox</span><span>Audit Log</span></div>
+<span class="ml-cta">Explore RexCage</span>
+</a>
+</div>
+<footer>
+<div class="footer-brand">Rex<span>Bot</span></div>
+<div class="footer-links">
+<a href="#/" data-nav>Home</a>
+<a href="#/system" data-nav>System</a>
 <a href="#/launch" data-nav>Launch</a>
 </div>
 <div class="footer-copy">&copy; 2026 RexBot Industries</div>
@@ -535,7 +614,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <!-- REXCODE MODULE PAGE -->
 <div class="page" id="page-rexcode">
 <div class="module-hero" style="--module-accent:#5b8def">
-<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexcode" data-nav>Modules</a> → RexCode</div>
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules" data-nav>Modules</a> → RexCode</div>
 <span class="module-badge">Module</span>
 <h1>Rex<em>Code</em></h1>
 <p class="module-tagline">Engineering and implementation. Your senior developer that never sleeps, never forgets context, and ships production-grade code across your entire stack.</p>
@@ -571,7 +650,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <!-- REXFLOW MODULE PAGE -->
 <div class="page" id="page-rexflow">
 <div class="module-hero" style="--module-accent:#4ecdc4">
-<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexflow" data-nav>Modules</a> → RexFlow</div>
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules" data-nav>Modules</a> → RexFlow</div>
 <span class="module-badge">Module</span>
 <h1>Rex<em>Flow</em></h1>
 <p class="module-tagline">Orchestration and coordination. The project manager that knows every agent's capacity, tracks every dependency, and keeps your workforce moving in parallel.</p>
@@ -607,7 +686,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <!-- REXNEXUS MODULE PAGE -->
 <div class="page" id="page-rexnexus">
 <div class="module-hero" style="--module-accent:#8b5cf6">
-<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexnexus" data-nav>Modules</a> → RexNexus</div>
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules" data-nav>Modules</a> → RexNexus</div>
 <span class="module-badge">Module</span>
 <h1>Rex<em>Nexus</em></h1>
 <p class="module-tagline">Memory and knowledge graph. The institutional brain that remembers every decision, connects every context, and ensures agents never start from zero.</p>
@@ -643,14 +722,14 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <!-- REXCAGE MODULE PAGE -->
 <div class="page" id="page-rexcage">
 <div class="module-hero" style="--module-accent:#e8a44a">
-<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexcage" data-nav>Modules</a> → RexCage</div>
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules" data-nav>Modules</a> → RexCage</div>
 <span class="module-badge">Module</span>
 <h1>Rex<em>Cage</em></h1>
-<p class="module-tagline">Security and access control. The perimeter that ensures agents stay in their lane, follow your rules, and never do anything you can't undo.</p>
+<p class="module-tagline">Security, access control, and proprietary sandbox. The perimeter that ensures agents stay in their lane, follow your rules, and never do anything you can't undo — with isolated execution environments that contain blast radius.</p>
 </div>
 <div class="module-detail" style="--module-accent:#e8a44a">
 <h2 class="reveal">Permit, constrain, <em>audit</em></h2>
-<p class="reveal">RexCage manages permissions for every agent, enforces safety rules, and maintains a complete audit trail of every action. It's the security layer that makes autonomous agents safe to run in production.</p>
+<p class="reveal">RexCage manages permissions for every agent, enforces safety rules, and maintains a complete audit trail of every action. Its proprietary sandbox isolates agent execution in contained environments — containing blast radius, preventing side-channel access, and ensuring no agent can escape its designated scope. It's the security layer that makes autonomous agents safe to run in production.</p>
 <div class="feature-list">
 <div class="feature-item reveal"><h4>Permission System</h4><p>Granular per-agent permissions. File access, network access, API access — all configurable, all auditable.</p></div>
 <div class="feature-item reveal"><h4>Safety Rules</h4><p>Define what agents can and cannot do. Block destructive operations, limit scope, enforce approval gates.</p></div>
@@ -666,6 +745,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <li>Audit logs are append-only and tamper-evident</li>
 <li>Emergency kill-switch stops all agents instantly</li>
 <li>Permission profiles can be saved and shared across projects</li>
+<li>Sandboxed execution isolates agent file and network access</li>
 </ul>
 </div>
 <div class="module-cta">
@@ -766,7 +846,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <div class="footer-links">
 <a href="#/" data-nav>Home</a>
 <a href="#/system" data-nav>System</a>
-<a href="#/modules/rexcode" data-nav>Modules</a>
+<a href="#/modules" data-nav>Modules</a>
 </div>
 <div class="footer-copy">&copy; 2026 RexBot Industries</div>
 </footer>
@@ -776,8 +856,8 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 
 <script>
 // SPA Router
-const pages={home:document.getElementById('page-home'),system:document.getElementById('page-system'),rexcode:document.getElementById('page-rexcode'),rexflow:document.getElementById('page-rexflow'),rexnexus:document.getElementById('page-rexnexus'),rexcage:document.getElementById('page-rexcage'),launch:document.getElementById('page-launch')};
-const routes={'/':'home','/system':'system','/modules/rexcode':'rexcode','/modules/rexflow':'rexflow','/modules/rexnexus':'rexnexus','/modules/rexcage':'rexcage','/launch':'launch'};
+const pages={home:document.getElementById('page-home'),system:document.getElementById('page-system'),modules:document.getElementById('page-modules'),rexcode:document.getElementById('page-rexcode'),rexflow:document.getElementById('page-rexflow'),rexnexus:document.getElementById('page-rexnexus'),rexcage:document.getElementById('page-rexcage'),launch:document.getElementById('page-launch')};
+const routes={'/':'home','/system':'system','/modules':'modules','/modules/rexcode':'rexcode','/modules/rexflow':'rexflow','/modules/rexnexus':'rexnexus','/modules/rexcage':'rexcage','/launch':'launch'};
 function navigate(hash){const path=hash.replace('#','')||'/';const pageKey=routes[path]||'home';Object.values(pages).forEach(p=>{if(p)p.classList.remove('active')});if(pages[pageKey])pages[pageKey].classList.add('active');document.querySelectorAll('.nav-links a,.nav-brand').forEach(a=>{a.classList.remove('active');const h=a.getAttribute('href');if(h===hash||(path.startsWith('/modules')&&h==='#/modules/rexcode'))a.classList.add('active')});window.scrollTo({top:0,behavior:'instant'});initReveals();if(pageKey==='home')initHeroCanvas()}
 window.addEventListener('hashchange',()=>navigate(location.hash));
 document.querySelectorAll('[data-nav]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const h=a.getAttribute('href');history.pushState(null,null,h);navigate(h);closeNav()})});
