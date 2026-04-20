@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RexBot — Your AI Workforce, Zero Overhead</title>
+<meta name="description" content="125 specialized AI agents. Zero subscription overhead. Bring your own keys. One-time presale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#060606;--bg-card:#0a0a0a;--bg-elevated:#0f0f0f;--bg-glass:rgba(255,255,255,0.02);--fg:#e8e4dc;--fg-muted:#8a8780;--fg-dim:#3d3b37;--fg-ghost:#1f1e1c;--gold:#c4a962;--gold-soft:rgba(196,169,98,0.06);--gold-mid:rgba(196,169,98,0.15);--gold-glow:rgba(196,169,98,0.3);--ivory:#f5f0e8;--warm-border:#1c1b18;--warm-border-light:#2a2825;--red:#c45555;--green:#5a9a6a;--font-display:'Playfair Display',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;--font-mono:'JetBrains Mono',monospace;--page-max:1400px;--content-max:900px}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--fg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.6}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;background:transparent;transition:all .5s cubic-bezier(.16,1,.3,1)}
+nav.scrolled{background:rgba(6,6,6,.92);backdrop-filter:blur(40px) saturate(120%);padding:.875rem 3rem;border-bottom:1px solid var(--warm-border)}
+.nav-brand{font-family:var(--font-display);font-size:1.5rem;color:var(--fg);text-decoration:none;letter-spacing:-.02em;font-weight:700}
+.nav-brand span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:var(--fg-muted);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.06em;transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s cubic-bezier(.16,1,.3,1)}
+.nav-links a:hover{color:var(--fg)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--gold)}
+.nav-links a.active::after{width:100%}
+.nav-cta{background:var(--gold);color:var(--bg);padding:.55rem 1.5rem;border-radius:100px;font-weight:600;font-size:.78rem;text-decoration:none;letter-spacing:.04em;transition:all .3s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 30px var(--gold-glow)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:.5rem}
+.nav-toggle span{display:block;width:24px;height:1.5px;background:var(--fg);margin:5px 0;transition:all .3s}
+#app{min-height:100vh}
+.page{display:none;opacity:0;transition:opacity .5s cubic-bezier(.16,1,.3,1)}
+.page.active{display:block;opacity:1}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:10rem 2rem 6rem;position:relative;overflow:hidden}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-content{position:relative;z-index:2;max-width:880px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:2.5rem;padding:.45rem 1.2rem;border:1px solid var(--gold-mid);border-radius:100px;background:var(--gold-soft);opacity:0;animation:revealUp .9s .3s forwards}
+.hero-eyebrow .pulse{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--gold-glow)}50%{opacity:.5;box-shadow:0 0 0 8px transparent}}
+.hero h1{font-family:var(--font-display);font-size:clamp(3rem,8.5vw,7rem);line-height:1.04;letter-spacing:-.035em;margin-bottom:2rem;font-weight:800;opacity:0;animation:revealUp 1s .5s forwards}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-sub{font-size:clamp(.95rem,1.8vw,1.15rem);color:var(--fg-muted);max-width:540px;margin:0 auto 3.5rem;line-height:1.75;font-weight:300;opacity:0;animation:revealUp .8s .8s forwards}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:revealUp .8s 1s forwards}
+.btn-hero{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.2rem;border-radius:100px;font-weight:600;font-size:.95rem;text-decoration:none;transition:all .3s;letter-spacing:.01em}
+.btn-hero-primary{background:var(--gold);color:var(--bg);box-shadow:0 0 0 0 var(--gold-glow)}
+.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 0 40px var(--gold-glow),0 12px 40px rgba(0,0,0,.5)}
+.btn-hero-secondary{background:transparent;color:var(--fg);border:1px solid var(--fg-dim)}
+.btn-hero-secondary:hover{border-color:var(--fg-muted);background:rgba(255,255,255,.02)}
+.hero-trust{margin-top:3.5rem;display:flex;gap:2.5rem;justify-content:center;align-items:center;opacity:0;animation:revealUp .8s 1.3s forwards}
+.hero-trust-item{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-dim);display:flex;align-items:center;gap:.5rem}
+.hero-trust-item .shield{width:14px;height:14px;border:1px solid var(--fg-dim);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:.55rem;color:var(--gold)}
+.hero-scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:revealUp .8s 1.6s forwards}
+.hero-scroll-hint span{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-dim)}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--fg-dim),transparent);animation:scrollPulse 2.5s infinite}
+@keyframes scrollPulse{0%,100%{opacity:.2;transform:scaleY(1)}50%{opacity:.7;transform:scaleY(.5)}}
+section{padding:8rem 2rem;max-width:var(--page-max);margin:0 auto}
+.section-narrow{padding:8rem 2rem;max-width:var(--content-max);margin:0 auto}
+.section-label{font-family:var(--font-mono);font-size:.65rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.section-label::before{content:'';width:28px;height:1px;background:var(--gold)}
+section h2{font-family:var(--font-display);font-size:clamp(2.2rem,4.5vw,3.8rem);line-height:1.12;letter-spacing:-.025em;margin-bottom:1.5rem;font-weight:700}
+section h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.section-desc{font-size:1.05rem;color:var(--fg-muted);max-width:620px;line-height:1.75;font-weight:300}
+.philosophy{border-top:1px solid var(--warm-border);border-bottom:1px solid var(--warm-border);padding:4rem 2rem;text-align:center;max-width:var(--content-max);margin:0 auto}
+.philosophy blockquote{font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2.2rem);line-height:1.4;color:var(--fg);font-weight:400;font-style:italic;letter-spacing:-.01em}
+.philosophy blockquote em{color:var(--gold);font-style:italic}
+.philosophy cite{display:block;margin-top:1.5rem;font-family:var(--font-mono);font-size:.7rem;font-style:normal;letter-spacing:.15em;text-transform:uppercase;color:var(--fg-dim)}
+.problem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:5rem;background:var(--warm-border);border-radius:16px;overflow:hidden}
+.problem-card{background:var(--bg-card);padding:2.75rem 2rem;position:relative;overflow:hidden;transition:background .5s}
+.problem-card:hover{background:var(--bg-elevated)}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .5s}
+.problem-card:hover::before{opacity:.4}
+.problem-card .card-num{font-family:var(--font-display);font-size:4.5rem;color:var(--gold);opacity:.05;position:absolute;top:0;right:1.5rem;line-height:1;font-weight:800}
+.problem-card h3{font-family:var(--font-body);font-size:1rem;font-weight:600;margin-bottom:.75rem;color:var(--fg);letter-spacing:-.01em}
+.problem-card p{font-size:.85rem;color:var(--fg-muted);line-height:1.7;font-weight:300}
+.problem-card .cost-tag{display:inline-block;margin-top:1rem;font-family:var(--font-mono);font-size:.68rem;color:var(--red);background:rgba(196,85,85,.08);padding:.25rem .65rem;border-radius:4px;letter-spacing:.04em}
+.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:5rem}
+.arch-block{padding:3rem;border:1px solid var(--warm-border);border-radius:16px;background:var(--bg-card);position:relative;overflow:hidden;transition:border-color .4s}
+.arch-block:hover{border-color:var(--warm-border-light)}
+.arch-block::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--gold),transparent);opacity:0;transition:opacity .4s}
+.arch-block:hover::after{opacity:.5}
+.arch-block .arch-icon{font-size:1.8rem;margin-bottom:1.25rem;display:block;color:var(--gold)}
+.arch-block h3{font-family:var(--font-display);font-size:1.35rem;margin-bottom:.75rem;font-weight:600;letter-spacing:-.01em}
+.arch-block p{font-size:.9rem;color:var(--fg-muted);line-height:1.7;font-weight:300}
+.arch-block .arch-detail{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--warm-border)}
+.arch-block .arch-detail li{font-size:.82rem;color:var(--fg-dim);padding:.35rem 0;font-weight:300;list-style:none;display:flex;align-items:center;gap:.6rem}
+.arch-block .arch-detail li::before{content:'';width:4px;height:4px;border-radius:1px;background:var(--gold);opacity:.5;flex-shrink:0}
+.steps-container{margin-top:5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative}
+.steps-container::before{content:'';position:absolute;top:48px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--fg-dim),transparent)}
+.step-block{text-align:center;padding:0 2.5rem;position:relative}
+.step-num{width:48px;height:48px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.75rem;font-family:var(--font-display);font-size:1.1rem;color:var(--gold);background:var(--bg);position:relative;z-index:2}
+.step-block h3{font-size:1.05rem;font-weight:600;margin-bottom:.6rem;letter-spacing:-.01em}
+.step-block p{font-size:.88rem;color:var(--fg-muted);line-height:1.65;font-weight:300;max-width:280px;margin:0 auto}
+.modules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:5rem}
+.module-card{padding:3rem 2.5rem;border:1px solid var(--warm-border);border-radius:20px;background:var(--bg-card);position:relative;overflow:hidden;transition:all .5s cubic-bezier(.16,1,.3,1);cursor:pointer;text-decoration:none;display:block;color:inherit}
+.module-card:hover{transform:translateY(-4px);border-color:var(--warm-border-light);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.module-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--module-accent,var(--gold));opacity:0;transition:opacity .4s}
+.module-card:hover::after{opacity:1}
+.module-card .module-icon{font-size:2.5rem;margin-bottom:1.5rem;display:block;opacity:.8}
+.module-card h3{font-family:var(--font-display);font-size:1.5rem;margin-bottom:.75rem;font-weight:600;letter-spacing:-.01em}
+.module-card .module-tagline{font-size:.95rem;color:var(--fg-muted);line-height:1.7;font-weight:300;margin-bottom:1.5rem}
+.module-card .module-features{display:flex;flex-wrap:wrap;gap:.5rem}
+.module-card .module-features span{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-dim);padding:.3rem .7rem;border:1px solid var(--warm-border);border-radius:100px}
+.module-card[data-module=rexcode]{--module-accent:#5b8def}
+.module-card[data-module=rexflow]{--module-accent:#4ecdc4}
+.module-card[data-module=rexnexus]{--module-accent:#8b5cf6}
+.module-card[data-module=rexcage]{--module-accent:#e8a44a}
+.pricing-section{padding:8rem 2rem;max-width:var(--page-max);margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:5rem}
+.pricing-card{padding:3rem 2.5rem;border:1px solid var(--warm-border);border-radius:20px;background:var(--bg-card);position:relative;text-align:center;transition:all .3s}
+.pricing-card:hover{border-color:var(--warm-border-light)}
+.pricing-card.featured{border-color:var(--gold-mid);background:linear-gradient(180deg,var(--gold-soft) 0%,var(--bg-card) 30%)}
+.pricing-card.featured::before{content:'PRESALE';position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.18em;padding:.35rem 1.2rem;background:var(--gold);color:var(--bg);border-radius:0 0 8px 8px;font-weight:600}
+.pricing-card h3{font-family:var(--font-display);font-size:1.3rem;margin-bottom:.5rem;font-weight:600}
+.pricing-card .price{font-family:var(--font-display);font-size:3.5rem;font-weight:700;color:var(--fg);margin:1.5rem 0 .5rem}
+.pricing-card .price span{font-size:1rem;font-weight:400;color:var(--fg-muted)}
+.pricing-card .price-desc{font-size:.85rem;color:var(--fg-muted);margin-bottom:2rem;font-weight:300}
+.pricing-card ul{list-style:none;text-align:left;margin-bottom:2.5rem}
+.pricing-card li{font-size:.85rem;color:var(--fg-muted);padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.03);font-weight:300;display:flex;align-items:center;gap:.6rem}
+.pricing-card li::before{content:'\2713';color:var(--gold);font-size:.7rem;flex-shrink:0}
+.btn-price{display:inline-block;padding:.85rem 2rem;border-radius:100px;font-weight:600;font-size:.85rem;text-decoration:none;transition:all .3s;width:100%}
+.btn-price-primary{background:var(--gold);color:var(--bg)}
+.btn-price-primary:hover{box-shadow:0 0 30px var(--gold-glow);transform:translateY(-1px)}
+.btn-price-outline{border:1px solid var(--warm-border);color:var(--fg)}
+.btn-price-outline:hover{border-color:var(--fg-dim);background:rgba(255,255,255,.02)}
+.cta-section{padding:10rem 2rem;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(196,169,98,.03) 0%,transparent 60%);pointer-events:none}
+.cta-section h2{font-family:var(--font-display);font-size:clamp(2.5rem,5.5vw,4.2rem);line-height:1.1;letter-spacing:-.025em;margin-bottom:1.5rem;font-weight:700}
+.cta-section h2 em{font-style:italic;color:var(--gold);font-weight:400}
+.cta-section p{font-size:1.05rem;color:var(--fg-muted);max-width:480px;margin:0 auto 2.5rem;font-weight:300}
+footer{border-top:1px solid var(--warm-border);padding:3rem 2rem;display:flex;justify-content:space-between;align-items:center;max-width:var(--page-max);margin:0 auto}
+footer .footer-brand{font-family:var(--font-display);font-size:1.15rem;font-weight:700}
+footer .footer-brand span{color:var(--gold)}
+footer .footer-links{display:flex;gap:2rem}
+footer .footer-links a{font-size:.8rem;color:var(--fg-dim);text-decoration:none;transition:color .2s}
+footer .footer-links a:hover{color:var(--fg)}
+footer .footer-copy{font-size:.72rem;color:var(--fg-dim);font-family:var(--font-mono)}
+.module-hero{min-height:60vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 2rem 4rem;max-width:var(--content-max);margin:0 auto;position:relative}
+.module-hero .breadcrumb{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-dim);margin-bottom:2rem;display:flex;align-items:center;gap:.5rem}
+.module-hero .breadcrumb a{color:var(--fg-muted);text-decoration:none;transition:color .2s}
+.module-hero .breadcrumb a:hover{color:var(--gold)}
+.module-hero .module-badge{font-family:var(--font-mono);font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--module-accent,var(--gold));margin-bottom:1rem;padding:.35rem .9rem;border:1px solid;color:var(--module-accent,var(--gold));border-radius:100px;display:inline-block;opacity:.7}
+.module-hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;letter-spacing:-.025em;margin-bottom:1.25rem;font-weight:700}
+.module-hero h1 em{font-style:italic;color:var(--module-accent,var(--gold));font-weight:400}
+.module-hero .module-tagline{font-size:1.1rem;color:var(--fg-muted);max-width:560px;line-height:1.7;font-weight:300}
+.module-detail{padding:4rem 2rem 8rem;max-width:var(--content-max);margin:0 auto}
+.module-detail h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:1.25rem;font-weight:600;letter-spacing:-.01em}
+.module-detail h2 em{font-style:italic;color:var(--module-accent,var(--gold));font-weight:400}
+.module-detail p{font-size:.95rem;color:var(--fg-muted);line-height:1.75;font-weight:300;margin-bottom:1.5rem;max-width:680px}
+.feature-list{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:3rem 0}
+.feature-item{padding:2rem;border:1px solid var(--warm-border);border-radius:14px;background:var(--bg-card);transition:border-color .3s}
+.feature-item:hover{border-color:var(--warm-border-light)}
+.feature-item h4{font-family:var(--font-display);font-size:1.1rem;margin-bottom:.5rem;font-weight:600}
+.feature-item p{font-size:.82rem;color:var(--fg-muted);line-height:1.65;font-weight:300;margin:0}
+.safety-block{padding:2.5rem;border:1px solid var(--warm-border);border-radius:14px;background:linear-gradient(135deg,var(--gold-soft) 0%,var(--bg-card) 60%);margin:3rem 0}
+.safety-block h3{font-family:var(--font-display);font-size:1.3rem;margin-bottom:1rem;font-weight:600;color:var(--gold)}
+.safety-block p{font-size:.88rem;color:var(--fg-muted);line-height:1.7;font-weight:300;margin-bottom:1rem}
+.safety-block ul{list-style:none;padding:0}
+.safety-block li{font-size:.85rem;color:var(--fg-muted);padding:.35rem 0;padding-left:1.5rem;position:relative;font-weight:300}
+.safety-block li::before{content:'\2713';position:absolute;left:0;color:var(--gold);opacity:.5;font-size:.5rem;top:.5rem}
+.module-cta{padding:4rem 2rem;text-align:center;border-top:1px solid var(--warm-border)}
+.system-intro{padding:8rem 2rem 4rem;max-width:var(--content-max);margin:0 auto;text-align:center}
+.system-intro h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;letter-spacing:-.025em;margin-bottom:1.5rem;font-weight:700}
+.system-intro h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.system-intro p{font-size:1.05rem;color:var(--fg-muted);max-width:600px;margin:0 auto;line-height:1.75;font-weight:300}
+.trust-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:5rem}
+.trust-pillar{padding:2.5rem 2rem;border:1px solid var(--warm-border);border-radius:16px;background:var(--bg-card);text-align:center;transition:all .4s}
+.trust-pillar:hover{border-color:var(--gold-mid);transform:translateY(-2px)}
+.trust-pillar .pillar-icon{font-size:2rem;margin-bottom:1.25rem;color:var(--gold)}
+.trust-pillar h3{font-family:var(--font-display);font-size:1.25rem;margin-bottom:.75rem;font-weight:600}
+.trust-pillar p{font-size:.85rem;color:var(--fg-muted);line-height:1.65;font-weight:300}
+.security-architecture{padding:6rem 2rem;max-width:var(--content-max);margin:0 auto}
+.sec-diagram{padding:3rem;border:1px solid var(--warm-border);border-radius:16px;background:var(--bg-card);margin-top:3rem;font-family:var(--font-mono);font-size:.75rem;color:var(--fg-muted);line-height:2;white-space:pre;overflow-x:auto}
+.sec-diagram .gold{color:var(--gold)}
+.sec-diagram .dim{color:var(--fg-dim)}
+.launch-hero{padding:8rem 2rem 4rem;max-width:var(--content-max);margin:0 auto;text-align:center}
+.launch-hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;letter-spacing:-.025em;margin-bottom:1.5rem;font-weight:700}
+.launch-hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.faq-section{padding:4rem 2rem;max-width:var(--content-max);margin:0 auto}
+.faq-item{border-bottom:1px solid var(--warm-border);padding:1.5rem 0;cursor:pointer}
+.faq-question{font-family:var(--font-display);font-size:1.1rem;font-weight:600;display:flex;justify-content:space-between;align-items:center;transition:color .2s}
+.faq-question:hover{color:var(--gold)}
+.faq-question .faq-toggle{font-size:1.2rem;color:var(--gold);transition:transform .3s}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.faq-item.open .faq-answer{max-height:300px;padding-top:1rem}
+.faq-answer p{font-size:.9rem;color:var(--fg-muted);line-height:1.7;font-weight:300}
+@keyframes revealUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}.reveal-delay-4{transition-delay:.4s}
+@media(max-width:1024px){.problem-grid{grid-template-columns:repeat(2,1fr)}.arch-grid{grid-template-columns:1fr}.modules-grid{grid-template-columns:1fr}.steps-container{grid-template-columns:1fr;gap:3rem}.steps-container::before{display:none}.trust-pillars{grid-template-columns:1fr}.feature-list{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}nav.scrolled{padding:.75rem 1.5rem}.nav-links{display:none}.nav-toggle{display:block}.hero{padding:7rem 1.5rem 3.5rem}section,.pricing-section,.cta-section{padding:5rem 1.5rem}.problem-grid{grid-template-columns:1fr}.pricing-grid{grid-template-columns:1fr}footer{flex-direction:column;gap:1rem;text-align:center}.module-hero{padding:6rem 1.5rem 3rem}}
+</style>
+</head>
+<body>
+<nav id="mainNav">
+<a href="#/" class="nav-brand" data-nav>Rex<span>Bot</span></a>
+<div class="nav-links" id="navLinks">
+<a href="#/" data-nav>Home</a>
+<a href="#/system" data-nav>System</a>
+<a href="#/modules/rexcode" data-nav>Modules</a>
+<a href="#/launch" data-nav>Launch</a>
+</div>
+<a href="#/launch" class="nav-cta" data-nav>Get Presale Access</a>
+<button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="app">
+
+<!-- HOME PAGE -->
+<div class="page" id="page-home">
+
+<section class="hero">
+<canvas class="hero-canvas" id="heroCanvas"></canvas>
+<div class="hero-content">
+<div class="hero-eyebrow"><span class="pulse"></span> RexBot Industries — Presale Now Open</div>
+<h1>Your AI <em>workforce,</em><br>zero overhead</h1>
+<p class="hero-sub">125 specialized agents. One interface. Bring your own keys — zero subscription markup. They coordinate, execute, and deliver so you stop juggling tools and start shipping.</p>
+<div class="hero-actions">
+<a href="#/launch" class="btn-hero btn-hero-primary" data-nav>Claim Presale Access →</a>
+<a href="#/system" class="btn-hero btn-hero-secondary" data-nav>See How It Works</a>
+</div>
+<div class="hero-trust">
+<div class="hero-trust-item"><span class="shield">✦</span> Keys never leave your machine</div>
+<div class="hero-trust-item"><span class="shield">✦</span> Zero telemetry</div>
+<div class="hero-trust-item"><span class="shield">✦</span> Open architecture</div>
+</div>
+</div>
+<div class="hero-scroll-hint">
+<span>Scroll</span>
+<div class="scroll-line"></div>
+</div>
+</section>
+
+<div class="philosophy reveal">
+<blockquote>"The best tools don't rent you access — they give you <em>ownership.</em>"</blockquote>
+<cite>The RexBot Principle</cite>
+</div>
+
+<section class="section" id="problem">
+<div class="section-label reveal">The Problem</div>
+<h2 class="reveal">You're paying a <em>tax</em> on your<br>own intelligence</h2>
+<p class="section-desc reveal">Every AI tool marks up the model on top of what it costs. Stack five tools and you're burning $300+/month in pure overhead — before doing a single useful thing.</p>
+<div class="problem-grid">
+<div class="problem-card reveal reveal-delay-1">
+<span class="card-num">01</span>
+<h3>Tool sprawl</h3>
+<p>Different agents for different tasks. None talk to each other. You're the glue — manually copying context between windows.</p>
+<span class="cost-tag">~$200/mo wasted</span>
+</div>
+<div class="problem-card reveal reveal-delay-2">
+<span class="card-num">02</span>
+<h3>Subscription bloat</h3>
+<p>Every AI tool is another monthly bill. $20 here, $200 there — thousands a month just to keep agents online.</p>
+<span class="cost-tag">~$400/mo wasted</span>
+</div>
+<div class="problem-card reveal reveal-delay-3">
+<span class="card-num">03</span>
+<h3>Vendor lock-in</h3>
+<p>Forced to use whichever model your tool picked. No flexibility. You pay their markup on top of the model's cost — every month.</p>
+<span class="cost-tag">~$150/mo markup</span>
+</div>
+<div class="problem-card reveal reveal-delay-4">
+<span class="card-num">04</span>
+<h3>No visibility</h3>
+<p>Can't see what agents are doing, whether they're blocked, or what they've finished. Black-box automation isn't automation — it's hope.</p>
+<span class="cost-tag">Hours/week lost</span>
+</div>
+</div>
+</section>
+
+<section class="section" id="architecture">
+<div class="section-label reveal">Architecture</div>
+<h2 class="reveal">Built <em>different,</em><br>by design</h2>
+<p class="section-desc reveal">RexBot doesn't host your keys, route your data, or lock your workflow. Your infrastructure. Your models. Your control.</p>
+<div class="arch-grid">
+<div class="arch-block reveal reveal-delay-1">
+<span class="arch-icon">🔐</span>
+<h3>Your Keys, Your Machine</h3>
+<p>API keys are stored locally, encrypted at rest, and never transmitted to any RexBot server. There is no RexBot server. Your machine is the server.</p>
+<ul class="arch-detail">
+<li>Keys encrypted with AES-256 at rest</li>
+<li>Zero outbound key transmission</li>
+<li>No cloud proxy — direct provider calls</li>
+<li>Works fully offline with local models</li>
+</ul>
+</div>
+<div class="arch-block reveal reveal-delay-2">
+<span class="arch-icon">⚡</span>
+<h3>Direct API, Zero Markup</h3>
+<p>Calls go straight from your machine to the AI provider. No middleman. No per-token surcharge. You pay the model's actual cost — nothing more.</p>
+<ul class="arch-detail">
+<li>OpenAI, Anthropic, Google, local models</li>
+<li>Pay provider pricing directly</li>
+<li>Swap models per task in real-time</li>
+<li>Bring any compatible API endpoint</li>
+</ul>
+</div>
+<div class="arch-block reveal reveal-delay-3">
+<span class="arch-icon">🏗️</span>
+<h3>Composable Architecture</h3>
+<p>Four modules, one interface. Each agent knows its lane. They coordinate through a shared context layer — no context-copying, no prompt-repeating.</p>
+<ul class="arch-detail">
+<li>RexCode: engineering & implementation</li>
+<li>RexFlow: orchestration & coordination</li>
+<li>RexNexus: memory & knowledge graph</li>
+<li>RexCage: security & access control</li>
+</ul>
+</div>
+<div class="arch-block reveal reveal-delay-4">
+<span class="arch-icon">👁️</span>
+<h3>Full Visibility</h3>
+<p>Watch every agent think, plan, and execute in real-time. Approve actions before they happen. See what changed, what failed, and what's next.</p>
+<ul class="arch-detail">
+<li>Real-time agent activity stream</li>
+<li>Human-in-the-loop approval gates</li>
+<li>Full audit trail of every action</li>
+<li>Rollback any change, any time</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="section" id="how-it-works">
+<div class="section-label reveal">How It Works</div>
+<h2 class="reveal">Three steps to<br><em>your</em> workforce</h2>
+<p class="section-desc reveal">No setup calls. No onboarding meetings. Plug in your keys, describe what you need, and start shipping.</p>
+<div class="steps-container">
+<div class="step-block reveal reveal-delay-1">
+<div class="step-num">1</div>
+<h3>Bring your keys</h3>
+<p>Add your OpenAI, Anthropic, or Google API keys. They stay on your machine. Encrypted. Never shared.</p>
+</div>
+<div class="step-block reveal reveal-delay-2">
+<div class="step-num">2</div>
+<h3>Describe the mission</h3>
+<p>Tell RexBot what you need in plain language. It picks the right agents, plans the workflow, and shows you the plan before executing.</p>
+</div>
+<div class="step-block reveal reveal-delay-3">
+<div class="step-num">3</div>
+<h3>Watch them execute</h3>
+<p>Agents coordinate, build, test, and deliver. You approve key steps. Everything is logged, auditable, and reversible.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="modules">
+<div class="section-label reveal">Modules</div>
+<h2 class="reveal">Four modules,<br><em>one</em> workforce</h2>
+<p class="section-desc reveal">Each module owns its domain. Together they cover the full cycle from idea to production.</p>
+<div class="modules-grid">
+<a href="#/modules/rexcode" class="module-card reveal reveal-delay-1" data-module="rexcode" data-nav>
+<span class="module-icon">⬡</span>
+<h3>RexCode</h3>
+<p class="module-tagline">Engineering and implementation. Writes, reviews, debugs, and ships production code across your entire stack.</p>
+<div class="module-features">
+<span>Multi-language</span><span>Code Review</span><span>Debug</span><span>Deploy</span>
+</div>
+</a>
+<a href="#/modules/rexflow" class="module-card reveal reveal-delay-2" data-module="rexflow" data-nav>
+<span class="module-icon">◈</span>
+<h3>RexFlow</h3>
+<p class="module-tagline">Orchestration and coordination. Routes tasks to the right agents, manages dependencies, and keeps everything moving.</p>
+<div class="module-features">
+<span>Task Routing</span><span>Dependencies</span><span>Parallel</span><span>Scheduling</span>
+</div>
+</a>
+<a href="#/modules/rexnexus" class="module-card reveal reveal-delay-3" data-module="rexnexus" data-nav>
+<span class="module-icon">◉</span>
+<h3>RexNexus</h3>
+<p class="module-tagline">Memory and knowledge graph. Remembers context across sessions, connects decisions, and builds institutional knowledge.</p>
+<div class="module-features">
+<span>Persistent Memory</span><span>Knowledge Graph</span><span>Context</span><span>Search</span>
+</div>
+</a>
+<a href="#/modules/rexcage" class="module-card reveal reveal-delay-4" data-module="rexcage" data-nav>
+<span class="module-icon">⬢</span>
+<h3>RexCage</h3>
+<p class="module-tagline">Security and access control. Manages permissions, enforces safety rules, and ensures agents stay in their lane.</p>
+<div class="module-features">
+<span>Permissions</span><span>Safety Rules</span><span>Audit Log</span><span>Rollback</span>
+</div>
+</a>
+</div>
+</section>
+
+<section class="pricing-section" id="pricing">
+<div class="section-label reveal">Pricing</div>
+<h2 class="reveal">One-time presale.<br><em>No</em> subscription.</h2>
+<p class="section-desc reveal">Pay once. Own it forever. Use your own API keys and pay model providers directly — zero markup, zero middleman.</p>
+<div class="pricing-grid">
+<div class="pricing-card reveal reveal-delay-1">
+<h3>Presale Access</h3>
+<div class="price">$99</div>
+<p class="price-desc">One-time payment. Lifetime license.</p>
+<ul>
+<li>Full RexBot platform</li>
+<li>All 4 modules included</li>
+<li>125 specialized agents</li>
+<li>BYOK — bring your own keys</li>
+<li>Community access</li>
+<li>All future updates</li>
+</ul>
+<a href="https://buy.stripe.com/4gM4gAgpU05b2La1SD5J600" class="btn-price btn-price-primary" target="_blank">Get Presale Access</a>
+</div>
+<div class="pricing-card featured reveal reveal-delay-2">
+<h3>Setup + Onboarding</h3>
+<div class="price">$399</div>
+<p class="price-desc">Presale + guided setup session.</p>
+<ul>
+<li>Everything in Presale</li>
+<li>1-on-1 setup call</li>
+<li>Custom agent configuration</li>
+<li>Workflow design session</li>
+<li>Priority support (30 days)</li>
+<li>Early feature access</li>
+</ul>
+<a href="https://buy.stripe.com/8x200k2z48BH71q54P5J602" class="btn-price btn-price-primary" target="_blank">Get Setup + Onboarding</a>
+</div>
+<div class="pricing-card reveal reveal-delay-3">
+<h3>Monthly Support</h3>
+<div class="price">$49<span>/mo</span></div>
+<p class="price-desc">Ongoing expert support. Cancel any time.</p>
+<ul>
+<li>Priority response queue</li>
+<li>Monthly strategy review</li>
+<li>Agent optimization</li>
+<li>New workflow design</li>
+<li>Slack channel access</li>
+<li>Cancel any time</li>
+</ul>
+<a href="https://buy.stripe.com/8x2cN6ehM3hnclKcxh5J601" class="btn-price btn-price-outline" target="_blank">Add Monthly Support</a>
+</div>
+</div>
+</section>
+
+<section class="cta-section">
+<h2 class="reveal">Stop renting intelligence.<br><em>Own</em> your workforce.</h2>
+<p class="reveal">Presale is open. 125 agents. Zero markup. One-time payment. Your keys, your machine, your control.</p>
+<div class="reveal">
+<a href="#/launch" class="btn-hero btn-hero-primary" data-nav>Claim Presale Access →</a>
+</div>
+</section>
+
+<footer>
+<div class="footer-brand">Rex<span>Bot</span></div>
+<div class="footer-links">
+<a href="#/system" data-nav>System</a>
+<a href="#/modules/rexcode" data-nav>Modules</a>
+<a href="#/launch" data-nav>Launch</a>
+</div>
+<div class="footer-copy">&copy; 2026 RexBot Industries</div>
+</footer>
+</div>
+
+<!-- SYSTEM PAGE -->
+<div class="page" id="page-system">
+
+<div class="system-intro">
+<div class="section-label reveal">System</div>
+<h1 class="reveal">Security <em>first.</em><br>Trust by architecture.</h1>
+<p class="reveal">RexBot was designed from the ground up with a simple principle: your data never leaves your machine unless you explicitly send it somewhere. There is no RexBot cloud. There is no RexBot server collecting your prompts.</p>
+</div>
+
+<section class="section-narrow">
+<div class="trust-pillars">
+<div class="trust-pillar reveal reveal-delay-1">
+<div class="pillar-icon">🔐</div>
+<h3>Local Key Vault</h3>
+<p>Your API keys are encrypted with AES-256 and stored locally. They are never transmitted to any external service. Your machine is the vault.</p>
+</div>
+<div class="trust-pillar reveal reveal-delay-2">
+<div class="pillar-icon">📡</div>
+<h3>Direct API Calls</h3>
+<p>Every AI request goes directly from your machine to the provider — OpenAI, Anthropic, Google, or your local model. No proxy. No middleman logging your requests.</p>
+</div>
+<div class="trust-pillar reveal reveal-delay-3">
+<div class="pillar-icon">👁️</div>
+<h3>Full Audit Trail</h3>
+<p>Every action, every API call, every file change is logged with timestamps and agent IDs. You can inspect, search, and export the complete history at any time.</p>
+</div>
+</div>
+</section>
+
+<section class="security-architecture">
+<div class="section-label reveal">Architecture Diagram</div>
+<h2 class="reveal">How data <em>flows</em></h2>
+<div class="sec-diagram reveal"><span class="gold">┌─────────────────────────────────────────────────┐</span>
+<span class="gold">│</span>              YOUR MACHINE                       <span class="gold">│</span>
+<span class="gold">│</span>                                                   <span class="gold">│</span>
+<span class="gold">│</span>  <span class="dim">┌──────────┐</span>   <span class="dim">┌──────────┐</span>   <span class="dim">┌──────────┐</span>   <span class="gold">│</span>
+<span class="gold">│</span>  <span class="dim">│ RexCode  │</span>   <span class="dim">│ RexFlow  │</span>   <span class="dim">│ RexNexus │</span>   <span class="gold">│</span>
+<span class="gold">│</span>  <span class="dim">│  Agent   │</span>   <span class="dim">│  Agent   │</span>   <span class="dim">│  Agent   │</span>   <span class="gold">│</span>
+<span class="gold">│</span>  <span class="dim">└────┬─────┘</span>   <span class="dim">└────┬─────┘</span>   <span class="dim">└────┬─────┘</span>   <span class="gold">│</span>
+<span class="gold">│</span>       │              │              │          <span class="gold">│</span>
+<span class="gold">│</span>       └──────┬───────┴───────┬──────┘          <span class="gold">│</span>
+<span class="gold">│</span>              │               │                 <span class="gold">│</span>
+<span class="gold">│</span>       <span class="dim">┌──────┴──────┐</span>  <span class="dim">┌────┴─────┐</span>         <span class="gold">│</span>
+<span class="gold">│</span>       <span class="dim">│  RexCage   │</span>  <span class="dim">│  Local   │</span>         <span class="gold">│</span>
+<span class="gold">│</span>       <span class="dim">│  (Safety)  │</span>  <span class="dim">│Key Vault │</span>         <span class="gold">│</span>
+<span class="gold">│</span>       <span class="dim">└──────┬──────┘</span>  <span class="dim">└────┬─────┘</span>         <span class="gold">│</span>
+<span class="gold">│</span>              │               │                 <span class="gold">│</span>
+<span class="gold">└──────────────┼───────────────┼─────────────────┘</span>
+               │               │
+        <span class="dim">direct API     encrypted keys</span>
+        <span class="dim">no proxy       never leave</span>
+               │               │
+    ┌──────────┴──────────────────────┐
+    │         AI PROVIDERS            │
+    │  OpenAI · Anthropic · Google    │
+    │       · Local Models            │
+    └─────────────────────────────────┘</div>
+</section>
+
+<section class="cta-section">
+<h2 class="reveal">Security isn't a feature.<br>It's the <em>architecture.</em></h2>
+<p class="reveal">No RexBot server. No data collection. No middleman. Just your machine, your keys, and 125 agents that work for you.</p>
+<div class="reveal">
+<a href="#/launch" class="btn-hero btn-hero-primary" data-nav>Get Presale Access →</a>
+</div>
+</section>
+
+<footer>
+<div class="footer-brand">Rex<span>Bot</span></div>
+<div class="footer-links">
+<a href="#/" data-nav>Home</a>
+<a href="#/modules/rexcode" data-nav>Modules</a>
+<a href="#/launch" data-nav>Launch</a>
+</div>
+<div class="footer-copy">&copy; 2026 RexBot Industries</div>
+</footer>
+</div>
+
+<!-- REXCODE MODULE PAGE -->
+<div class="page" id="page-rexcode">
+<div class="module-hero" style="--module-accent:#5b8def">
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexcode" data-nav>Modules</a> → RexCode</div>
+<span class="module-badge">Module</span>
+<h1>Rex<em>Code</em></h1>
+<p class="module-tagline">Engineering and implementation. Your senior developer that never sleeps, never forgets context, and ships production-grade code across your entire stack.</p>
+</div>
+<div class="module-detail" style="--module-accent:#5b8def">
+<h2 class="reveal">Write, review, debug, <em>ship</em></h2>
+<p class="reveal">RexCode handles the full engineering lifecycle — from architecture decisions to implementation, code review, testing, and deployment. It works across languages, frameworks, and codebases without losing context between tasks.</p>
+<div class="feature-list">
+<div class="feature-item reveal"><h4>Multi-language</h4><p>Python, TypeScript, Go, Rust, and more. Switch languages per task without re-explaining your codebase.</p></div>
+<div class="feature-item reveal"><h4>Code Review</h4><p>Reviews PRs for bugs, security issues, and architectural concerns. Catches what linters miss.</p></div>
+<div class="feature-item reveal"><h4>Debug & Fix</h4><p>Traces bugs through call chains, identifies root causes, and proposes targeted fixes — not rewrites.</p></div>
+<div class="feature-item reveal"><h4>Deploy Ready</h4><p>Generates deployment configs, CI pipelines, and infrastructure-as-code. Ships to any platform.</p></div>
+</div>
+<div class="safety-block reveal">
+<h3>🛡️ Safety Block</h3>
+<p>RexCode operates under strict constraints to protect your codebase:</p>
+<ul>
+<li>Never modifies files outside the project directory</li>
+<li>Requires approval for destructive operations (deletes, force-pushes)</li>
+<li>Full diff preview before any file change</li>
+<li>Automatic rollback on test failures</li>
+<li>All changes logged with agent ID and timestamp</li>
+</ul>
+</div>
+<div class="module-cta">
+<h2>Ready to <em>ship</em>?</h2>
+<p style="color:var(--fg-muted);margin-bottom:2rem;font-weight:300">Get RexCode and the full RexBot platform with presale access.</p>
+<a href="#/launch" class="btn-hero btn-hero-primary" data-nav>Get Presale Access →</a>
+</div>
+</div>
+</div>
+
+<!-- REXFLOW MODULE PAGE -->
+<div class="page" id="page-rexflow">
+<div class="module-hero" style="--module-accent:#4ecdc4">
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexflow" data-nav>Modules</a> → RexFlow</div>
+<span class="module-badge">Module</span>
+<h1>Rex<em>Flow</em></h1>
+<p class="module-tagline">Orchestration and coordination. The project manager that knows every agent's capacity, tracks every dependency, and keeps your workforce moving in parallel.</p>
+</div>
+<div class="module-detail" style="--module-accent:#4ecdc4">
+<h2 class="reveal">Coordinate, schedule, <em>deliver</em></h2>
+<p class="reveal">RexFlow routes tasks to the right agents, manages dependencies between them, and runs independent work in parallel. It's the orchestration layer that turns 125 individual agents into a coordinated workforce.</p>
+<div class="feature-list">
+<div class="feature-item reveal"><h4>Smart Routing</h4><p>Matches tasks to agents based on capability, availability, and context. No manual assignment needed.</p></div>
+<div class="feature-item reveal"><h4>Dependency Management</h4><p>Tracks what needs to finish before what can start. Automatically sequences and parallelizes work.</p></div>
+<div class="feature-item reveal"><h4>Parallel Execution</h4><p>Runs independent tasks simultaneously across agents. 10 agents working in parallel, not 10 waiting in sequence.</p></div>
+<div class="feature-item reveal"><h4>Progress Tracking</h4><p>Real-time visibility into every agent's status, queue, and output. No more black-box automation.</p></div>
+</div>
+<div class="safety-block reveal">
+<h3>🛡️ Safety Block</h3>
+<p>RexFlow enforces guardrails on orchestration decisions:</p>
+<ul>
+<li>Human approval required for cross-project operations</li>
+<li>Rate limiting prevents runaway agent execution</li>
+<li>Automatic pause on error threshold breaches</li>
+<li>Full audit trail of all routing decisions</li>
+<li>Graceful degradation — if one agent fails, others continue</li>
+</ul>
+</div>
+<div class="module-cta">
+<h2>Ready to <em>orchestrate</em>?</h2>
+<p style="color:var(--fg-muted);margin-bottom:2rem;font-weight:300">Get RexFlow and the full RexBot platform with presale access.</p>
+<a href="#/launch" class="btn-hero btn-hero-primary" data-nav>Get Presale Access →</a>
+</div>
+</div>
+</div>
+
+<!-- REXNEXUS MODULE PAGE -->
+<div class="page" id="page-rexnexus">
+<div class="module-hero" style="--module-accent:#8b5cf6">
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexnexus" data-nav>Modules</a> → RexNexus</div>
+<span class="module-badge">Module</span>
+<h1>Rex<em>Nexus</em></h1>
+<p class="module-tagline">Memory and knowledge graph. The institutional brain that remembers every decision, connects every context, and ensures agents never start from zero.</p>
+</div>
+<div class="module-detail" style="--module-accent:#8b5cf6">
+<h2 class="reveal">Remember, connect, <em>recall</em></h2>
+<p class="reveal">RexNexus builds persistent memory across sessions. It stores decisions, tracks relationships between concepts, and provides semantic search so agents always have the context they need — without you re-explaining everything.</p>
+<div class="feature-list">
+<div class="feature-item reveal"><h4>Persistent Memory</h4><p>Decisions, preferences, and project context survive across sessions. No more starting from scratch.</p></div>
+<div class="feature-item reveal"><h4>Knowledge Graph</h4><p>Connects people, projects, decisions, and deadlines into a navigable graph. See how everything relates.</p></div>
+<div class="feature-item reveal"><h4>Semantic Search</h4><p>Find anything by meaning, not just keywords. "That decision about the database" just works.</p></div>
+<div class="feature-item reveal"><h4>Context Injection</h4><p>Automatically provides relevant context to agents before they start tasks. Less prompting, better output.</p></div>
+</div>
+<div class="safety-block reveal">
+<h3>🛡️ Safety Block</h3>
+<p>RexNexus protects your institutional knowledge:</p>
+<ul>
+<li>All memory stored locally on your machine</li>
+<li>Never transmits memory contents externally</li>
+<li>Granular access controls per agent</li>
+<li>Memory can be exported, deleted, or redacted</li>
+<li>Version history with full rollback capability</li>
+</ul>
+</div>
+<div class="module-cta">
+<h2>Ready to <em>remember</em>?</h2>
+<p style="color:var(--fg-muted);margin-bottom:2rem;font-weight:300">Get RexNexus and the full RexBot platform with presale access.</p>
+<a href="#/launch" class="btn-hero btn-hero-primary" data-nav>Get Presale Access →</a>
+</div>
+</div>
+</div>
+
+<!-- REXCAGE MODULE PAGE -->
+<div class="page" id="page-rexcage">
+<div class="module-hero" style="--module-accent:#e8a44a">
+<div class="breadcrumb"><a href="#/" data-nav>Home</a> → <a href="#/modules/rexcage" data-nav>Modules</a> → RexCage</div>
+<span class="module-badge">Module</span>
+<h1>Rex<em>Cage</em></h1>
+<p class="module-tagline">Security and access control. The perimeter that ensures agents stay in their lane, follow your rules, and never do anything you can't undo.</p>
+</div>
+<div class="module-detail" style="--module-accent:#e8a44a">
+<h2 class="reveal">Permit, constrain, <em>audit</em></h2>
+<p class="reveal">RexCage manages permissions for every agent, enforces safety rules, and maintains a complete audit trail of every action. It's the security layer that makes autonomous agents safe to run in production.</p>
+<div class="feature-list">
+<div class="feature-item reveal"><h4>Permission System</h4><p>Granular per-agent permissions. File access, network access, API access — all configurable, all auditable.</p></div>
+<div class="feature-item reveal"><h4>Safety Rules</h4><p>Define what agents can and cannot do. Block destructive operations, limit scope, enforce approval gates.</p></div>
+<div class="feature-item reveal"><h4>Audit Logging</h4><p>Every action recorded with agent ID, timestamp, and outcome. Searchable, exportable, and tamper-evident.</p></div>
+<div class="feature-item reveal"><h4>Instant Rollback</h4><p>Any change can be reversed. RexCage maintains snapshots and diffs so you can undo anything, any time.</p></div>
+</div>
+<div class="safety-block reveal">
+<h3>🛡️ Safety Block</h3>
+<p>RexCage is itself governed by the strictest constraints:</p>
+<ul>
+<li>Safety rules cannot be bypassed by other agents</li>
+<li>Permission changes require human approval</li>
+<li>Audit logs are append-only and tamper-evident</li>
+<li>Emergency kill-switch stops all agents instantly</li>
+<li>Permission profiles can be saved and shared across projects</li>
+</ul>
+</div>
+<div class="module-cta">
+<h2>Ready to <em>secure</em>?</h2>
+<p style="color:var(--fg-muted);margin-bottom:2rem;font-weight:300">Get RexCage and the full RexBot platform with presale access.</p>
+<a href="#/launch" class="btn-hero btn-hero-primary" data-nav>Get Presale Access →</a>
+</div>
+</div>
+</div>
+
+<!-- LAUNCH PAGE -->
+<div class="page" id="page-launch">
+
+<div class="launch-hero">
+<div class="section-label reveal">Launch</div>
+<h1 class="reveal">Presale is <em>open.</em></h1>
+<p class="reveal" style="font-size:1.05rem;color:var(--fg-muted);max-width:480px;margin:0 auto 2.5rem;font-weight:300;line-height:1.75">One-time payment. Lifetime license. Zero subscription markup. Bring your own keys and pay model providers directly.</p>
+</div>
+
+<div class="pricing-section" style="padding-top:0">
+<div class="pricing-grid">
+<div class="pricing-card reveal reveal-delay-1">
+<h3>Presale Access</h3>
+<div class="price">$99</div>
+<p class="price-desc">One-time payment. Lifetime license.</p>
+<ul>
+<li>Full RexBot platform</li>
+<li>All 4 modules included</li>
+<li>125 specialized agents</li>
+<li>BYOK — bring your own keys</li>
+<li>Community access</li>
+<li>All future updates</li>
+</ul>
+<a href="https://buy.stripe.com/4gM4gAgpU05b2La1SD5J600" class="btn-price btn-price-primary" target="_blank">Get Presale Access</a>
+</div>
+<div class="pricing-card featured reveal reveal-delay-2">
+<h3>Setup + Onboarding</h3>
+<div class="price">$399</div>
+<p class="price-desc">Presale + guided setup session.</p>
+<ul>
+<li>Everything in Presale</li>
+<li>1-on-1 setup call</li>
+<li>Custom agent configuration</li>
+<li>Workflow design session</li>
+<li>Priority support (30 days)</li>
+<li>Early feature access</li>
+</ul>
+<a href="https://buy.stripe.com/8x200k2z48BH71q54P5J602" class="btn-price btn-price-primary" target="_blank">Get Setup + Onboarding</a>
+</div>
+<div class="pricing-card reveal reveal-delay-3">
+<h3>Monthly Support</h3>
+<div class="price">$49<span>/mo</span></div>
+<p class="price-desc">Ongoing expert support. Cancel any time.</p>
+<ul>
+<li>Priority response queue</li>
+<li>Monthly strategy review</li>
+<li>Agent optimization</li>
+<li>New workflow design</li>
+<li>Slack channel access</li>
+<li>Cancel any time</li>
+</ul>
+<a href="https://buy.stripe.com/8x2cN6ehM3hnclKcxh5J601" class="btn-price btn-price-outline" target="_blank">Add Monthly Support</a>
+</div>
+</div>
+</div>
+
+<div class="faq-section">
+<div class="section-label reveal">FAQ</div>
+<h2 class="reveal" style="font-family:var(--font-display);font-size:1.8rem;margin-bottom:2.5rem;font-weight:600">Common <em>questions</em></h2>
+<div class="faq-item reveal" onclick="this.classList.toggle('open')">
+<div class="faq-question">What does "bring your own keys" mean? <span class="faq-toggle">+</span></div>
+<div class="faq-answer"><p>You provide your own API keys for AI providers (OpenAI, Anthropic, Google, etc.). RexBot makes direct calls to those providers at their published pricing. No markup, no middleman. Your keys are stored locally and encrypted.</p></div>
+</div>
+<div class="faq-item reveal" onclick="this.classList.toggle('open')">
+<div class="faq-question">Is there a monthly subscription? <span class="faq-toggle">+</span></div>
+<div class="faq-answer"><p>No. The presale is a one-time payment for a lifetime license. You only pay the AI providers directly for the compute you use. The optional Monthly Support plan is separate and can be canceled any time.</p></div>
+</div>
+<div class="faq-item reveal" onclick="this.classList.toggle('open')">
+<div class="faq-question">How is this different from other AI tools? <span class="faq-toggle">+</span></div>
+<div class="faq-answer"><p>Most AI tools charge a monthly subscription on top of the model's cost. They route your data through their servers, lock you into specific models, and add markup per token. RexBot runs locally, calls providers directly, and charges once — not monthly.</p></div>
+</div>
+<div class="faq-item reveal" onclick="this.classList.toggle('open')">
+<div class="faq-question">What are the 125 agents? <span class="faq-toggle">+</span></div>
+<div class="faq-answer"><p>125 specialized AI agents organized across four modules — RexCode (engineering), RexFlow (orchestration), RexNexus (memory), and RexCage (security). Each agent owns a specific domain: code review, debugging, project management, research, deployment, and more.</p></div>
+</div>
+<div class="faq-item reveal" onclick="this.classList.toggle('open')">
+<div class="faq-question">Is my data safe? <span class="faq-toggle">+</span></div>
+<div class="faq-answer"><p>RexBot has no central server. Your API keys are encrypted locally. AI requests go directly from your machine to the provider. No data passes through RexBot infrastructure, because there is no RexBot infrastructure. Your machine is the server.</p></div>
+</div>
+<div class="faq-item reveal" onclick="this.classList.toggle('open')">
+<div class="faq-question">Can I use local models? <span class="faq-toggle">+</span></div>
+<div class="faq-answer"><p>Yes. RexBot supports any OpenAI-compatible API endpoint, including locally-hosted models like Ollama, LM Studio, or vLLM. Run fully offline with zero external API calls if you want.</p></div>
+</div>
+</div>
+
+<footer>
+<div class="footer-brand">Rex<span>Bot</span></div>
+<div class="footer-links">
+<a href="#/" data-nav>Home</a>
+<a href="#/system" data-nav>System</a>
+<a href="#/modules/rexcode" data-nav>Modules</a>
+</div>
+<div class="footer-copy">&copy; 2026 RexBot Industries</div>
+</footer>
+</div>
+
+</div>
+
+<script>
+// SPA Router
+const pages={home:document.getElementById('page-home'),system:document.getElementById('page-system'),rexcode:document.getElementById('page-rexcode'),rexflow:document.getElementById('page-rexflow'),rexnexus:document.getElementById('page-rexnexus'),rexcage:document.getElementById('page-rexcage'),launch:document.getElementById('page-launch')};
+const routes={'/':'home','/system':'system','/modules/rexcode':'rexcode','/modules/rexflow':'rexflow','/modules/rexnexus':'rexnexus','/modules/rexcage':'rexcage','/launch':'launch'};
+function navigate(hash){const path=hash.replace('#','')||'/';const pageKey=routes[path]||'home';Object.values(pages).forEach(p=>{if(p)p.classList.remove('active')});if(pages[pageKey])pages[pageKey].classList.add('active');document.querySelectorAll('.nav-links a,.nav-brand').forEach(a=>{a.classList.remove('active');const h=a.getAttribute('href');if(h===hash||(path.startsWith('/modules')&&h==='#/modules/rexcode'))a.classList.add('active')});window.scrollTo({top:0,behavior:'instant'});initReveals();if(pageKey==='home')initHeroCanvas()}
+window.addEventListener('hashchange',()=>navigate(location.hash));
+document.querySelectorAll('[data-nav]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const h=a.getAttribute('href');history.pushState(null,null,h);navigate(h);closeNav()})});
+navigate(location.hash||'#/');
+
+// Nav scroll effect
+let navTicking=false;
+window.addEventListener('scroll',()=>{if(!navTicking){requestAnimationFrame(()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);navTicking=false});navTicking=true}});
+
+// Mobile nav toggle
+const navToggle=document.getElementById('navToggle');
+const navLinks=document.getElementById('navLinks');
+let navOpen=false;
+function closeNav(){navOpen=false;navLinks.style.display='';navToggle.querySelectorAll('span').forEach(s=>s.style.transform='')}
+navToggle.addEventListener('click',()=>{navOpen=!navOpen;navLinks.style.display=navOpen?'flex':'none';navLinks.style.position='fixed';navLinks.style.top='60px';navLinks.style.left='0';navLinks.style.right='0';navLinks.style.flexDirection='column';navLinks.style.padding='1.5rem';navLinks.style.background='rgba(6,6,6,.97)';navLinks.style.gap='1.5rem';navLinks.style.borderBottom='1px solid #1c1b18';if(!navOpen)closeNav()});
+
+// Intersection Observer for reveals
+function initReveals(){const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el))}
+initReveals();
+
+// Hero Canvas - Particle Network
+function initHeroCanvas(){const canvas=document.getElementById('heroCanvas');if(!canvas)return;const ctx=canvas.getContext('2d');let w,h,particles,animId;function resize(){w=canvas.width=canvas.offsetWidth;h=canvas.height=canvas.offsetHeight}function createParticles(){particles=[];const count=Math.min(Math.floor(w*h/12000),80);for(let i=0;i<count;i++){particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,o:Math.random()*.5+.1})}}function draw(){ctx.clearRect(0,0,w,h);const maxDist=150;for(let i=0;i<particles.length;i++){const p=particles[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(196,169,98,${p.o})`;ctx.fill();for(let j=i+1;j<particles.length;j++){const q=particles[j];const dx=p.x-q.x,dy=p.y-q.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<maxDist){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle=`rgba(196,169,98,${.08*(1-dist/maxDist)})`;ctx.lineWidth=.5;ctx.stroke()}}}animId=requestAnimationFrame(draw)}resize();createParticles();draw();window.addEventListener('resize',()=>{cancelAnimationFrame(animId);resize();createParticles();draw()})}
+initHeroCanvas();
+</script>
+</body>
+</html>
