@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RexBot — RexCage Sandbox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/modules.css">
+</head>
+<body>
+    <div class="top-progress" id="topProgress"></div>
+    <canvas class="hc" id="cv"></canvas>
+
+    <div class="shell nav-wrap">
+        <nav class="nav">
+            <a href="./index.html" class="nb">Rex<span>Bot</span></a>
+            <div class="nl">
+                <a href="./index.html">Home</a>
+                <a href="./rexflow.html">RexFlow</a>
+                <a href="./rexnexus.html">RexNexus</a>
+                <a href="./rexcode.html">RexCode</a>
+                <a href="./rexcage.html" class="active">RexCage</a>
+                <a href="./system.html">System</a>
+            </div>
+            <a href="./launch.html" class="nc">Launch the Legend</a>
+        </nav>
+    </div>
+
+    <main class="shell route-shell accent-cage" id="app">
+        <section class="module-hero reveal">
+            <div class="module-panel">
+                <div class="eyebrow" style="color: #ffb83d; border-color: rgba(255,184,61,0.2); background: rgba(255,184,61,0.06);"><span class="p" style="background: #ffb83d; box-shadow: 0 0 10px rgba(255,184,61,0.8);"></span>Sandbox, Reforged</div>
+                <h1 class="module-title">RexCage</h1>
+                <p class="section-lead">RexCage is the protected proving ground for experiments, volatile ideas, dangerous drafts, edge-case tests, and high-speed iteration. It lets RexBot push harder without contaminating the rest of the system.</p>
+                <div class="grid-2" style="margin-top: 30px;">
+                    <div class="metric-box">
+                        <strong>Safe Volatility</strong>
+                        <span style="color: var(--fg-m); font-size: 0.95rem;">Prototype aggressively without poisoning production flows.</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>Experiment Lanes</strong>
+                        <span style="color: var(--fg-m); font-size: 0.95rem;">Spin up contained scenarios for testing prompts, workflows, and output quality.</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>Simulation Space</strong>
+                        <span style="color: var(--fg-m); font-size: 0.95rem;">Try wild product ideas, campaigns, agent mixes, and failure drills.</span>
+                    </div>
+                    <div class="metric-box">
+                        <strong>Controlled Release</strong>
+                        <span style="color: var(--fg-m); font-size: 0.95rem;">Promote what survives pressure. Discard what does not.</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="module-console" style="border-color: rgba(255,184,61,0.15);">
+                <div class="console-top">
+                    <div class="console-dots"><span></span><span></span><span></span></div>
+                    <div style="font-family: var(--fm); font-size: 0.75rem; color: var(--fg-m);">RexCage // live simulation</div>
+                </div>
+                <div class="console-screen">
+                    <div class="console-line">&gt; cage-init: isolated environment seeded with live-safe mock context</div>
+                    <div class="console-line">&gt; simulate: <b>stress-test agent chain under aggressive edge cases</b></div>
+                    <div class="console-line">&gt; evaluate: compare variants, rank failures, surface winning patterns</div>
+                    <div class="console-line">&gt; harden: export approved paths into production-ready workflows</div>
+                    <div class="console-line">&gt; archive: <b>preserve lessons, kill weak ideas, release strong ones</b></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="detail-grid">
+                <div class="story-card reveal">
+                    <div class="eyebrow" style="color: #ffb83d; border-color: rgba(255,184,61,0.2); background: rgba(255,184,61,0.06);"><span class="p" style="background: #ffb83d;"></span>Why this is special</div>
+                    <h2>RexCage makes the system <span class="gradient-text">feel unfair.</span></h2>
+                    <p class="story-copy" style="font-size: 1.05rem;">What makes RexCage special is containment with ambition. You can prototype, stress-test, simulate, and break things on purpose while preserving the integrity of the broader workforce. That is how bold systems move fast without turning reckless.</p>
+                </div>
+                <div class="story-card reveal">
+                    <div class="eyebrow" style="color: #ffb83d; border-color: rgba(255,184,61,0.2); background: rgba(255,184,61,0.06);"><span class="p" style="background: #ffb83d;"></span>Where it hits</div>
+                    <ul class="big-list">
+                        <li>Transforms the old sandbox idea into a branded experimentation engine.</li>
+                        <li>Lets the brand feel fearless while the system stays disciplined.</li>
+                        <li>Creates a natural story for R&D, prototyping, and controlled chaos.</li>
+                        <li>Ideal for innovation labs, skunkworks, test programs, and launch rehearsals.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="reveal" style="margin-bottom: 20px;">
+                <div class="eyebrow" style="color: #ffb83d; border-color: rgba(255,184,61,0.2); background: rgba(255,184,61,0.06);"><span class="p" style="background: #ffb83d;"></span>Core Pillars</div>
+                <h2>The parts that make <span class="gradient-text">RexCage matter.</span></h2>
+            </div>
+            <div class="story-grid">
+                <div class="story-card reveal">
+                    <h3>Containment by Design</h3>
+                    <p class="story-copy">RexCage gives operators a place to explore without destabilizing live execution lanes.</p>
+                </div>
+                <div class="story-card reveal">
+                    <h3>Creative Ferocity</h3>
+                    <p class="story-copy">It is built for testing the moves that feel too dangerous for production but too important to ignore.</p>
+                </div>
+                <div class="story-card reveal">
+                    <h3>Stress-Test Everything</h3>
+                    <p class="story-copy">Prompt chains, workflow automations, product concepts, and ops patterns can all be pressure-tested before rollout.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="shell footer">
+        <div class="footer-wrap glass-card" style="padding: 24px 34px;">
+            <div>
+                <div class="eyebrow" style="margin-bottom: 8px;">RexBot Industries</div>
+                <div style="color: var(--fg-m); max-width: 500px; font-size: 0.95rem;">A cinematic GitHub Pages experience built to sell the vision: agent workforce orchestration, BYOK freedom, real-time execution, and module-grade power.</div>
+            </div>
+            <div class="fl">
+                <a href="./index.html" class="chip">Home</a>
+                <a href="https://github.com/reggierexai-design/rexhub" class="chip" target="_blank">GitHub Repo</a>
+                <a href="mailto:reggierex.ai@gmail.com" class="chip">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/core.js"></script>
+</body>
+</html>
