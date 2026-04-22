@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="canonical" href="https://reggierexai-design.github.io/rexhub/">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RexBot — Your AI Workforce, Zero Overhead</title>
 <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/rexbot-logo.png">
@@ -11,7 +12,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/rexbot-logo.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reggierexai-design.github.io/rexhub/">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="RexBot — Your AI Workforce, Zero Overhead">
 <meta name="twitter:description" content="125 specialized AI agents. Zero subscription overhead. Bring your own keys. One-time presale.">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/rexbot-logo.png">
@@ -231,7 +232,38 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 .module-landing-card .ml-cta::after{content:'→';transition:transform .3s}
 .module-landing-card:hover .ml-cta::after{transform:translateX(3px)}
 @media(max-width:768px){.modules-landing-grid{grid-template-columns:1fr;padding:0 1.5rem 5rem}.module-landing-card{padding:2.5rem 2rem}}
+
+/* Mobile Responsive */
+@media(max-width:768px){
+  .problem-grid{grid-template-columns:1fr}
+  .arch-grid{grid-template-columns:1fr}
+  .steps-container{grid-template-columns:1fr}
+  .modules-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .feature-list{grid-template-columns:1fr}
+  nav{padding:1rem 1.25rem}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#060606;padding:1rem 1.25rem;border-bottom:1px solid #1e1e26}
+  section{padding:4rem 1.25rem}
+  footer{flex-direction:column;gap:1.5rem;text-align:center}
+  .hero-trust{flex-wrap:wrap;gap:1rem}
+  .sec-diagram img{max-width:100%}
+}
+
 </style>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"SoftwareApplication",
+  "name":"RexBot",
+  "applicationCategory":"DeveloperApplication",
+  "description":"125 AI agents on your machine. No cloud. No middleman. Just your keys and your code.",
+  "offers":{"@type":"Offer","price":"99","priceCurrency":"USD","availability":"https://schema.org/PreOrder"},
+  "operatingSystem":"macOS, Windows"
+}
+</script>
 </head>
 <body>
 <nav id="mainNav">
@@ -473,6 +505,8 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 </ul>
 <a href="https://buy.stripe.com/8x2cN6ehM3hnclKcxh5J601" class="btn-price btn-price-outline" target="_blank">Add Monthly Support</a>
 </div>
+<div class="faq-item reveal"><h3 class="faq-q">What happens after the presale? <span class="faq-toggle">+</span></h3><p class="faq-a">After the presale ends, you will receive an email with download instructions and early access to the beta. Presale buyers get lifetime updates and priority support. The public release is targeted for Q3 2026.</p></div>
+<div class="faq-item reveal"><h3 class="faq-q">What platforms does RexBot support? <span class="faq-toggle">+</span></h3><p class="faq-a">RexBot will launch on macOS and Windows. Linux support is planned for a future update. All AI processing happens locally on your machine — no cloud dependency.</p></div>
 </div>
 </section>
 
@@ -527,7 +561,9 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <section class="security-architecture">
 <div class="section-label reveal">Architecture Diagram</div>
 <h2 class="reveal">How data <em>flows</em></h2>
-<div class="sec-diagram reveal"><img src="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/architecture-diagram.jpg" alt="RexBot Architecture Diagram — How data flows from your machine through agents to AI providers" style="width:100%;max-width:900px;display:block;margin:0 auto;border-radius:8px"></div>
+<div class="sec-diagram reveal"><img src="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/architecture-diagram.jpg" alt="RexBot Architecture Diagram — How data flows from your machine through agents to AI providers" style="width:100%;max-width:900px;display:block;margin:0 auto;border-radius:8px"><div class="faq-item reveal"><h3 class="faq-q">What happens after the presale? <span class="faq-toggle">+</span></h3><p class="faq-a">After the presale ends, you will receive an email with download instructions and early access to the beta. Presale buyers get lifetime updates and priority support. The public release is targeted for Q3 2026.</p></div>
+<div class="faq-item reveal"><h3 class="faq-q">What platforms does RexBot support? <span class="faq-toggle">+</span></h3><p class="faq-a">RexBot will launch on macOS and Windows. Linux support is planned for a future update. All AI processing happens locally on your machine — no cloud dependency.</p></div>
+</div>
 </section>
 
 <section class="cta-section">
@@ -842,6 +878,17 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 </div>
 
 <script>
+
+document.querySelector('.nav-toggle')?.addEventListener('click',function(){
+  document.querySelector('.nav-links')?.classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(function(a){
+  a.addEventListener('click',function(){
+    document.querySelector('.nav-links')?.classList.remove('open');
+  });
+});
+
+
 // SPA Router
 const pages={home:document.getElementById('page-home'),system:document.getElementById('page-system'),modules:document.getElementById('page-modules'),rexcode:document.getElementById('page-rexcode'),rexflow:document.getElementById('page-rexflow'),rexnexus:document.getElementById('page-rexnexus'),rexcage:document.getElementById('page-rexcage'),launch:document.getElementById('page-launch')};
 const routes={'/':'home','/system':'system','/modules':'modules','/modules/rexcode':'rexcode','/modules/rexflow':'rexflow','/modules/rexnexus':'rexnexus','/modules/rexcage':'rexcage','/launch':'launch'};
