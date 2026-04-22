@@ -13,7 +13,7 @@ RexHub is the central hub for RexBot Industries — 125+ specialized AI agents w
 ## Service Tiers
 
 - **Presale Access**: $99 — Lifetime access to core features, all 125 agents, dashboard, and workflow builder
-- **Setup & Configuration**: $299 — Personalized onboarding, custom integration, and 3 custom workflows
+- **Setup + Onboarding**: $399 — Personalized onboarding, custom integration, and 3 custom workflows
 - **Monthly Support**: $49/month — Ongoing maintenance, priority support, and new agent releases
 
 ## Getting Started
