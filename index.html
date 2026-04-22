@@ -527,31 +527,7 @@ footer .footer-copy{font-size:.82rem;color:var(--fg-dim);font-family:var(--font-
 <section class="security-architecture">
 <div class="section-label reveal">Architecture Diagram</div>
 <h2 class="reveal">How data <em>flows</em></h2>
-<div class="sec-diagram reveal"><span class="gold">┌─────────────────────────────────────────────────┐</span>
-<span class="gold">│</span>              YOUR MACHINE                       <span class="gold">│</span>
-<span class="gold">│</span>                                                   <span class="gold">│</span>
-<span class="gold">│</span>  <span class="dim">┌──────────┐</span>   <span class="dim">┌──────────┐</span>   <span class="dim">┌──────────┐</span>   <span class="gold">│</span>
-<span class="gold">│</span>  <span class="dim">│ RexCode  │</span>   <span class="dim">│ RexFlow  │</span>   <span class="dim">│ RexNexus │</span>   <span class="gold">│</span>
-<span class="gold">│</span>  <span class="dim">│  Agent   │</span>   <span class="dim">│  Agent   │</span>   <span class="dim">│  Agent   │</span>   <span class="gold">│</span>
-<span class="gold">│</span>  <span class="dim">└────┬─────┘</span>   <span class="dim">└────┬─────┘</span>   <span class="dim">└────┬─────┘</span>   <span class="gold">│</span>
-<span class="gold">│</span>       │              │              │          <span class="gold">│</span>
-<span class="gold">│</span>       └──────┬───────┴───────┬──────┘          <span class="gold">│</span>
-<span class="gold">│</span>              │               │                 <span class="gold">│</span>
-<span class="gold">│</span>       <span class="dim">┌──────┴──────┐</span>  <span class="dim">┌────┴─────┐</span>         <span class="gold">│</span>
-<span class="gold">│</span>       <span class="dim">│  RexCage   │</span>  <span class="dim">│  Local   │</span>         <span class="gold">│</span>
-<span class="gold">│</span>       <span class="dim">│  (Safety)  │</span>  <span class="dim">│Key Vault │</span>         <span class="gold">│</span>
-<span class="gold">│</span>       <span class="dim">└──────┬──────┘</span>  <span class="dim">└────┬─────┘</span>         <span class="gold">│</span>
-<span class="gold">│</span>              │               │                 <span class="gold">│</span>
-<span class="gold">└──────────────┼───────────────┼─────────────────┘</span>
-               │               │
-        <span class="dim">direct API     encrypted keys</span>
-        <span class="dim">no proxy       never leave</span>
-               │               │
-    ┌──────────┴──────────────────────┐
-    │         AI PROVIDERS            │
-    │  OpenAI · Anthropic · Google    │
-    │       · Local Models            │
-    └─────────────────────────────────┘</div>
+<div class="sec-diagram reveal"><img src="https://raw.githubusercontent.com/reggierexai-design/rexhub/main/assets/architecture-diagram.jpg" alt="RexBot Architecture Diagram — How data flows from your machine through agents to AI providers" style="width:100%;max-width:900px;display:block;margin:0 auto;border-radius:8px"></div>
 </section>
 
 <section class="cta-section">
