@@ -30,6 +30,13 @@ fi
 
 rustup target add x86_64-apple-darwin aarch64-apple-darwin
 
+if ! command -v cargo-tauri &>/dev/null; then
+  echo "📦 Installing Tauri CLI..."
+  cargo install tauri-cli
+else
+  echo "✅ Tauri CLI $(cargo tauri --version)"
+fi
+
 if ! command -v python3 &>/dev/null; then
   brew install python@3.12
 fi
